@@ -1,13 +1,13 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 const GET_PROJECTS = gql`
-query getProjects {
-  projects {
-    id
-    name
-    status
+  query getProjects {
+    projects {
+      id
+      name
+      status
+    }
   }
-}
 `;
 
 const GET_PROJECT = gql`
@@ -23,8 +23,8 @@ const GET_PROJECT = gql`
         email
         phone
       }
-    } 
+    }
   }
-`
+`;
 
-export { GET_PROJECTS, GET_PROJECT }
+export { GET_PROJECTS, GET_PROJECT };

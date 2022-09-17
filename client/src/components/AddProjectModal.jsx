@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { FaList } from "react-icons/fa";
-import { useMutation, useQuery } from "@apollo/client";
-import { ADD_PROJECT } from "../mutations/projectMutations";
-import { GET_PROJECTS } from "../queries/projectQueries";
-import { GET_CLIENTS } from "../queries/clientQueries";
+import { useState } from 'react';
+import { FaList } from 'react-icons/fa';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_PROJECT } from '../mutations/projectMutations';
+import { GET_PROJECTS } from '../queries/projectQueries';
+import { GET_CLIENTS } from '../queries/clientQueries';
 
 export default function AddClientModal() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [clientId, setClientId] = useState("");
-  const [status, setStatus] = useState("new");
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [clientId, setClientId] = useState('');
+  const [status, setStatus] = useState('new');
 
   const [addProject] = useMutation(ADD_PROJECT, {
     variables: { name, description, clientId, status },
@@ -28,20 +28,20 @@ export default function AddClientModal() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (name === "" || description === "" || status === "") {
-      return alert("Please fill in all fields");
+    if (name === '' || description === '' || status === '') {
+      return alert('Please fill in all fields');
     }
 
     addProject(name, description, clientId, status);
 
-    setName("");
-    setDescription("");
-    setStatus("new");
-    setClientId("");
+    setName('');
+    setDescription('');
+    setStatus('new');
+    setClientId('');
   };
 
   if (loading) return null;
-  if (error) return "Something Went Wrong";
+  if (error) return 'Something Went Wrong';
 
   return (
     <>
@@ -51,7 +51,8 @@ export default function AddClientModal() {
             type='button'
             className='btn btn-primary'
             data-bs-toggle='modal'
-            data-bs-target='#addProjectModal'>
+            data-bs-target='#addProjectModal'
+          >
             <div className='d-flex align-items-center'>
               <FaList className='icon' />
               <div>New Project</div>
@@ -62,7 +63,8 @@ export default function AddClientModal() {
             className='modal fade'
             id='addProjectModal'
             aria-labelledby='addProjectModalLabel'
-            aria-hidden='true'>
+            aria-hidden='true'
+          >
             <div className='modal-dialog'>
               <div className='modal-content'>
                 <div className='modal-header'>
@@ -73,7 +75,8 @@ export default function AddClientModal() {
                     type='button'
                     className='btn-close'
                     data-bs-dismiss='modal'
-                    aria-label='Close'></button>
+                    aria-label='Close'
+                  ></button>
                 </div>
                 <div className='modal-body'>
                   <form onSubmit={onSubmit}>
@@ -93,9 +96,8 @@ export default function AddClientModal() {
                         className='form-control'
                         id='description'
                         value={description}
-                        onChange={(e) =>
-                          setDescription(e.target.value)
-                        }></textarea>
+                        onChange={(e) => setDescription(e.target.value)}
+                      ></textarea>
                     </div>
                     <div className='mb-3'>
                       <label className='form-label'>Status</label>
@@ -103,7 +105,8 @@ export default function AddClientModal() {
                         id='status'
                         className='form-select'
                         value={status}
-                        onChange={(e) => setStatus(e.target.value)}>
+                        onChange={(e) => setStatus(e.target.value)}
+                      >
                         <option value='new'>Not Started</option>
                         <option value='progress'>In Progress</option>
                         <option value='completed'>Completed</option>
@@ -116,7 +119,8 @@ export default function AddClientModal() {
                         id='clientId'
                         className='form-select'
                         value={clientId}
-                        onChange={(e) => setClientId(e.target.value)}>
+                        onChange={(e) => setClientId(e.target.value)}
+                      >
                         <option value=''>Select Client</option>
                         {data.clients.map((client) => (
                           <option key={client.id} value={client.id}>
@@ -129,7 +133,8 @@ export default function AddClientModal() {
                     <button
                       type='submit'
                       data-bs-dismiss='modal'
-                      className='btn btn-primary'>
+                      className='btn btn-primary'
+                    >
                       Submit
                     </button>
                   </form>
